@@ -32,5 +32,5 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            reallyshadydev/wojakcoin-core:1.12.1
+            reallyshadydev/wojakcoin-core:1.12.1.0
             reallyshadydev/wojakcoin-core:latest

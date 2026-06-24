@@ -10,10 +10,10 @@ The `arm64` binaries are built from the exact same source commit as the release
 using WojakCore's own `depends` system, so they are statically linked the same
 way as the published `amd64` binaries.
 
-- **Image:** `reallyshadydev/wojakcoin-core:1.12.1`
+- **Image:** `reallyshadydev/wojakcoin-core:1.12.1.0`
 - **Platforms:** `linux/amd64`, `linux/arm64`
-- **Client version:** `1.12.1` (WojakCore `CLIENT_VERSION`)
-- **Release:** [`1.0.1.2`](https://github.com/WojakCoinProj/wojakcore/releases/tag/1.0.1.2)
+- **Client version:** `1.12.1.0` (WojakCore `CLIENT_VERSION`)
+- **Release:** [`1.12.1.0`](https://github.com/WojakCoinProj/wojakcore/releases/tag/1.12.1.0)
 - **Data directory:** `/root/.wojakcoin` (config file `wojakcoin.conf`)
 
 ## Ports
@@ -32,7 +32,7 @@ ZMQ: `28332`.
 # Run in regtest with RPC enabled
 docker run -d --name wojak \
   -p 30760:30760 \
-  reallyshadydev/wojakcoin-core:1.12.1 \
+  reallyshadydev/wojakcoin-core:1.12.1.0 \
   wojakcoind -regtest -server -txindex \
   -rpcbind=0.0.0.0 -rpcallowip=0.0.0.0/0 \
   -rpcuser=user -rpcpassword=pass
@@ -51,7 +51,7 @@ A `wojakcoin.conf` mounted into `/root/.wojakcoin/` is loaded automatically.
 A single-platform build for your host architecture:
 
 ```bash
-docker build -t reallyshadydev/wojakcoin-core:1.12.1 .
+docker build -t reallyshadydev/wojakcoin-core:1.12.1.0 .
 ```
 
 A multi-platform build (requires Docker Buildx + QEMU):
@@ -59,7 +59,7 @@ A multi-platform build (requires Docker Buildx + QEMU):
 ```bash
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  -t reallyshadydev/wojakcoin-core:1.12.1 \
+  -t reallyshadydev/wojakcoin-core:1.12.1.0 \
   --push .
 ```
 

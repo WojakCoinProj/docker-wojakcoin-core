@@ -7,8 +7,8 @@ LABEL org.opencontainers.image.title="WojakCoin Core" \
 
 # Client version (CLIENT_VERSION in wojakcore) and the GitHub release that
 # ships the matching Linux release binaries.
-ENV WOJAKCOIN_VERSION=1.12.1
-ENV WOJAKCOIN_RELEASE=1.0.1.2
+ENV WOJAKCOIN_VERSION=1.12.1.0
+ENV WOJAKCOIN_RELEASE=1.12.1.0
 ENV WOJAKCOIN_DATA=/root/.wojakcoin
 ENV PATH=/opt/wojakcoin/bin:$PATH
 
