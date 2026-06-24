@@ -3,10 +3,15 @@
 A Docker image for [WojakCoin Core](https://github.com/WojakCoinProj/wojakcore) (`wojakcoind`),
 modelled on [ruimarinho/docker-bitcoin-core](https://github.com/ruimarinho/docker-bitcoin-core).
 
-The image packages the official Linux x86_64 release binaries (`wojakcoind`,
+The image is **multi-platform** (`linux/amd64` and `linux/arm64`). For each
+platform it downloads the matching official release binaries (`wojakcoind`,
 `wojakcoin-cli`, `wojakcoin-tx`) and verifies their SHA256 checksums at build time.
+The `arm64` binaries are built from the exact same source commit as the release
+using WojakCore's own `depends` system, so they are statically linked the same
+way as the published `amd64` binaries.
 
 - **Image:** `reallyshadydev/wojakcoin-core:1.12.1`
+- **Platforms:** `linux/amd64`, `linux/arm64`
 - **Client version:** `1.12.1` (WojakCore `CLIENT_VERSION`)
 - **Release:** [`1.0.1.2`](https://github.com/WojakCoinProj/wojakcore/releases/tag/1.0.1.2)
 - **Data directory:** `/root/.wojakcoin` (config file `wojakcoin.conf`)
@@ -43,13 +48,25 @@ A `wojakcoin.conf` mounted into `/root/.wojakcoin/` is loaded automatically.
 
 ## Building locally
 
+A single-platform build for your host architecture:
+
 ```bash
 docker build -t reallyshadydev/wojakcoin-core:1.12.1 .
 ```
 
+A multi-platform build (requires Docker Buildx + QEMU):
+
+```bash
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t reallyshadydev/wojakcoin-core:1.12.1 \
+  --push .
+```
+
 ## Publishing (CI)
 
-`.github/workflows/docker.yml` builds and pushes to Docker Hub on every push to
+`.github/workflows/docker.yml` uses `docker buildx` to build and push a
+multi-platform (`linux/amd64,linux/arm64`) image to Docker Hub on every push to
 `main` and on tags. Set two repository secrets:
 
 - `DOCKERHUB_USERNAME` — a Docker Hub account with write access to the `reallyshadydev` namespace
